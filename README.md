@@ -19,7 +19,7 @@ Checkout to the latest stable tag:
     git checkout tags/v<major>.<minor>.<patch>
 
     # Example
-    git checkout tags/v0.0.1
+    git checkout tags/v0.1.0
 
 Make Python virtual environment and activate the virtual environment:
 

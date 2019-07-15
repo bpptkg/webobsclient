@@ -123,7 +123,7 @@ class MC3RequestMethod(RequestMethod):
     )
 
 
-class SefranRequestMethod(RequestMethod):
+class Sefran3RequestMethod(RequestMethod):
 
     path = '/sefran3.pl'
     accepts_parameters = (

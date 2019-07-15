@@ -1,6 +1,6 @@
 from .auth import BasicAuthenticationAPI
 from .request import (
-    BasicRequest, MC3RequestMethod, SefranRequestMethod
+    BasicRequest, MC3RequestMethod, Sefran3RequestMethod
 )
 
 __all__ = [
@@ -31,7 +31,7 @@ class MC3Client(MC3RequestMethod):
         super(MC3Client, self).__init__(auth)
 
 
-class Sefran3Client(SefranRequestMethod):
+class Sefran3Client(Sefran3RequestMethod):
     """WebObs Sefran3 Client."""
 
     name = 'WebObs Sefran3'
