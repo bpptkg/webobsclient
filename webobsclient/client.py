@@ -21,23 +21,21 @@ class WebObsBasicAuthenticationAPI(BasicAuthenticationAPI):
         super(WebObsBasicAuthenticationAPI, self).__init__(**kwargs)
 
 
-class MC3Client(WebObsBasicAuthenticationAPI, MC3RequestMethod):
+class MC3Client(MC3RequestMethod):
     """WebObs MC3 Client."""
 
     name = 'WebObs MC3'
 
     def __init__(self, **kwargs):
-        WebObsBasicAuthenticationAPI.__init__(self, **kwargs)
         auth = WebObsBasicAuthenticationAPI(**kwargs)
-        MC3RequestMethod.__init__(self, auth)
+        super(MC3Client, self).__init__(auth)
 
 
-class Sefran3Client(WebObsBasicAuthenticationAPI, SefranRequestMethod):
+class Sefran3Client(SefranRequestMethod):
     """WebObs Sefran3 Client."""
 
     name = 'WebObs Sefran3'
 
     def __init__(self, **kwargs):
-        WebObsBasicAuthenticationAPI.__init__(self, **kwargs)
         auth = WebObsBasicAuthenticationAPI(**kwargs)
-        SefranRequestMethod.__init__(self, auth)
+        super(Sefran3Client, self).__init__(auth)
