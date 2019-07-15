@@ -28,7 +28,7 @@ Make Python virtual environment and activate the virtual environment:
 
 Install dependency packages:
 
-    cd /path/to/bmaclient/
+    cd /path/to/webobsclient/
     pip install -r requirements.txt
 
 Install the package:
@@ -54,7 +54,7 @@ the package:
 
 ## Making Requests
 
-You need to specity `username` and `password` credentials of your WebObs access
+You need to specify `username` and `password` credentials of your WebObs access
 login in order to make a request. For example:
 
 ```python
