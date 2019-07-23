@@ -20,7 +20,7 @@ setup(
     install_requires=['httplib2', 'six'],
     author='Indra Rudianto',
     author_email='indrarudianto.official@gmail.com',
-    url='http://gitlab.com/bpptkg/webobsclient',
+    url='https://gitlab.com/bpptkg/webobsclient',
     zip_safe=True,
     packages=['webobsclient'],
     classifiers=[
