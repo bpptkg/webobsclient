@@ -2,8 +2,7 @@
 
 import os
 
-from distutils.core import setup
-from webobsclient.version import get_version
+from setuptools import setup, find_packages
 
 
 def read(filename):
@@ -13,16 +12,17 @@ def read(filename):
 
 setup(
     name='webobsclient',
-    version=get_version(),
-    description='WebObs Python Client Libary',
+    version='0.1.0',
+    description='WebObs Python Client',
     long_description=read('README.md'),
+    long_description_content_type='text/markdown',
     license='MIT',
     install_requires=['httplib2', 'six'],
     author='Indra Rudianto',
     author_email='indrarudianto.official@gmail.com',
     url='https://gitlab.com/bpptkg/webobsclient',
-    zip_safe=True,
-    packages=['webobsclient'],
+    zip_safe=False,
+    packages=find_packages(exclude=['docs', 'tests']),
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
