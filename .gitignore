@@ -1,3 +1,7 @@
-*.pyc
+*.py[co]
 build/
 dist/
+TODO
+*.egg-info
+.vscode
+__pycache__
