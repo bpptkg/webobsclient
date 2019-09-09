@@ -45,6 +45,14 @@ class MC3Schema(object):
             'type': 'str',
         },
         {
+            'name': 'locmode',
+            'type': 'str',
+        },
+        {
+            'name': 'loctype',
+            'type': 'str',
+        },
+        {
             'name': 'valid',
             'type': 'int8',
         },
