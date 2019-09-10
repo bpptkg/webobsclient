@@ -53,10 +53,6 @@ class MC3Schema(object):
             'type': 'str',
         },
         {
-            'name': 'valid',
-            'type': 'int8',
-        },
-        {
             'name': 'projection',
             'type': 'str',
         },
@@ -83,3 +79,24 @@ class MC3Schema(object):
     def types(self):
         """Return column type of MC3 CSV schema."""
         return [item['type'] for item in self.schema]
+
+    @classmethod
+    def get_columns(self):
+        """
+        Get MC3 schema columns.
+        """
+        return [item['name'] for item in self.schema]
+
+    @classmethod
+    def get_types(self):
+        """
+        Get MC3 schema types.
+        """
+        return [item['type'] for item in self.schema]
+
+    @classmethod
+    def get_dtypes(self):
+        """
+        Get MC3 schema dtypes.
+        """
+        return {item['name']: item['type'] for item in self.schema}
