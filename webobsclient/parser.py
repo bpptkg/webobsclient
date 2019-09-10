@@ -59,13 +59,13 @@ class MC3Parser(object):
                 path_or_buffer) if not line.startswith(self.schema.comment)]
             data = ''.join(lines)
 
-        # TODO(indra): Soft index searching to determine which the order of
-        # column name of MC3 CSV data. It enable smart searching in case MC3 CSV
+        # TODO(indra): Soft index searching to determine which order of column
+        # name of MC3 CSV data. It enables smart searching in case MC3 CSV
         # column order changed or one of them removed.
         df = pd.read_csv(io.StringIO(data), delimiter=self.schema.delimiter,
                          header=None, names=self.schema.get_columns())
 
-        for col, dtype in MC3Schema.get_dtypes().items():
+        for col, dtype in self.schema.get_dtypes().items():
             if dtype.startswith('datetime'):
                 df[col] = pd.to_datetime(df[col], utc=self.utc)
                 if self.use_local_tz:
