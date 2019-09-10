@@ -5,3 +5,4 @@ TODO
 *.egg-info
 .vscode
 __pycache__
+test_settings.py
