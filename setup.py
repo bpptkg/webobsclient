@@ -17,7 +17,11 @@ setup(
     long_description=read('README.md'),
     long_description_content_type='text/markdown',
     license='MIT',
-    install_requires=['httplib2', 'six'],
+    install_requires=[
+        'httplib2',
+        'six',
+        'pandas',
+    ],
     author='Indra Rudianto',
     author_email='indrarudianto.official@gmail.com',
     url='https://gitlab.com/bpptkg/webobsclient',
