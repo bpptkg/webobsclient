@@ -1,6 +1,7 @@
 import six
 from six.moves.urllib.parse import urlencode
 from httplib2 import Http
+import pandas as pd
 
 
 def encode_string(value):
@@ -105,8 +106,8 @@ class MC3RequestMethod(RequestMethod):
     path = '/mc3.pl'
     accepts_parameters = (
         'mc',
-        'y1', 'm1', 'h1',
-        'y2', 'm2', 'h2',
+        'y1', 'm1', 'd1', 'h1',
+        'y2', 'm2', 'd2', 'h2',
         'type',
         'duree',
         'amplitude',
@@ -120,7 +121,42 @@ class MC3RequestMethod(RequestMethod):
         'newts',
         'dump',
         'trash',
+        'starttime',
+        'endtime',
     )
+    aliases = {
+        'starttime': {
+            'y1': 'year',
+            'm1': 'month',
+            'd1': 'day',
+            'h1': 'hour',
+        },
+        'endtime': {
+            'y2': 'year',
+            'm2': 'month',
+            'd2': 'day',
+            'h2': 'hour',
+        },
+    }
+
+    def deconsruct_datetime(self, name, timestamp):
+        alias = self.aliases[name]
+        return {
+            key: getattr(timestamp, value) for key, value in alias.items()
+        }
+
+    def _build_parameters(self, kwargs):
+        alias = ['startime', 'endtime']
+        for item in alias:
+            value = kwargs.pop(item, None)
+            if value:
+                timestamp = pd.to_datetime(value)
+                kwargs.update(self.deconsruct_datetime(item, timestamp))
+
+        for key, value in six.iteritems(kwargs):
+            if value is None:
+                continue
+            self.parameters[key] = encode_string(value)
 
 
 class Sefran3RequestMethod(RequestMethod):
