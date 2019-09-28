@@ -1,6 +1,6 @@
 # webobsclient
 
-WebObs Python client library.
+WebObs Python client.
 
 ## Installation
 
@@ -14,6 +14,7 @@ command:
 * Python 3.5+
 * httplib2
 * six
+* pandas (for parsing CSV and other data processing)
 
 ## Making Requests
 
@@ -45,6 +46,9 @@ response, content = client.request(
 print(response)
 print(content)
 ```
+
+Note that request time is in UTC time zone. If you use local time zone, you
+should convert it to UTC time zone before making the request.
 
 ## Supported WebObs Clients
 
