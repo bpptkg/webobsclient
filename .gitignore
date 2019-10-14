@@ -6,3 +6,5 @@ TODO
 .vscode
 __pycache__
 test_settings.py
+venv/
+venv3/
