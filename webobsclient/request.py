@@ -146,7 +146,7 @@ class MC3RequestMethod(RequestMethod):
         }
 
     def _build_parameters(self, kwargs):
-        alias = ['startime', 'endtime']
+        alias = ['starttime', 'endtime']
         for item in alias:
             value = kwargs.pop(item, None)
             if value:
