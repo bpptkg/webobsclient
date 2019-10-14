@@ -139,7 +139,7 @@ class MC3RequestMethod(RequestMethod):
         },
     }
 
-    def deconsruct_datetime(self, name, timestamp):
+    def deconstruct_datetime(self, name, timestamp):
         alias = self.aliases[name]
         return {
             key: getattr(timestamp, value) for key, value in alias.items()
@@ -151,7 +151,7 @@ class MC3RequestMethod(RequestMethod):
             value = kwargs.pop(item, None)
             if value:
                 timestamp = pd.to_datetime(value)
-                kwargs.update(self.deconsruct_datetime(item, timestamp))
+                kwargs.update(self.deconstruct_datetime(item, timestamp))
 
         for key, value in six.iteritems(kwargs):
             if value is None:
