@@ -4,16 +4,21 @@ from sqlalchemy import DateTime
 from sqlalchemy import Integer
 from sqlalchemy import Float
 from sqlalchemy import String
-
 from sqlalchemy.ext.automap import automap_base
 
+from webobsclient.decorators import run_once
 
 Base = automap_base()
 
 
+@run_once
+def prepare(engine, **kwargs):
+    Base.prepare(engine, **kwargs)
+
+
 def engine(name):
     engine = create_engine(name)
-    Base.prepare(engine, reflect=True)
+    prepare(engine, reflect=True)
     return engine
 
 
