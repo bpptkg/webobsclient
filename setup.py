@@ -21,6 +21,7 @@ setup(
         'httplib2',
         'six',
         'pandas',
+        'sqlalchemy',
     ],
     author='Indra Rudianto',
     author_email='indrarudianto.official@gmail.com',
