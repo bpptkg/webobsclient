@@ -2,3 +2,6 @@ six>=1.8.0
 httplib2>=0.9
 sqlalchemy
 pandas
+pytest
+tox
+coverage

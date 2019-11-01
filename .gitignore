@@ -8,3 +8,6 @@ __pycache__
 test_settings.py
 venv/
 venv3/
+.tox/
+.pytest_cache/
+.coverage
