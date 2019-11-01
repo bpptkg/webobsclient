@@ -33,3 +33,7 @@ class ObjectCreationTest(unittest.TestCase):
         self.assertEqual(data_as_object.duration, self.data[0]['duration'])
 
         self.assertEqual(DataModel.object_from_dictionary(None), '')
+
+
+if __name__ == '__main__':
+    unittest.main()

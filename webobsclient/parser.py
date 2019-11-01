@@ -55,8 +55,14 @@ class MC3Parser(object):
             data = ''.join(lines)
         except (UnicodeDecodeError, AttributeError):
             path_or_buffer = self.csv
-            lines = [line for line in open(
-                path_or_buffer) if not line.startswith(self.schema.comment)]
+            lines = []
+            with open(path_or_buffer, 'r') as buffer:
+                while True:
+                    line = buffer.readline()
+                    if not line:
+                        break
+                    if not line.startswith(self.schema.comment):
+                        lines.append(line)
             data = ''.join(lines)
 
         # TODO(indra): Soft index searching to determine which order of column
@@ -72,7 +78,7 @@ class MC3Parser(object):
                     df[col] = df[col].dt.tz_convert(self.local_tz)
 
                 if self.stringify_datetime:
-                    df[col] = df[col].astype(str)
+                    df[col] = df[col].apply(lambda item: item.isoformat())
 
         return df
 
