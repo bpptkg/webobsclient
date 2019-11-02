@@ -1,4 +1,11 @@
-class MC3Schema(object):
+class BaseSchema(object):
+    """
+    Base columns schema.
+    """
+    pass
+
+
+class MC3Schema(BaseSchema):
     """WebObs MC3 CSV schema."""
 
     delimiter = ';'

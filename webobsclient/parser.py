@@ -12,7 +12,13 @@ def decode_bytes(data):
         return data
 
 
-class MC3Parser(object):
+class BaseParser(object):
+    """
+    Base parser object.
+    """
+
+
+class MC3Parser(BaseParser):
     """
     MC3 CSV parser object.
 
