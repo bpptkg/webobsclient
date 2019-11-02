@@ -4,8 +4,8 @@ WebObs Python client.
 
 ## Installation
 
-**webobsclient** is available on PyPI, you can install it by typing this
-command:
+**webobsclient** is available on PyPI. You can install the latest version by
+typing this command:
 
     pip install -U webobsclient
 
@@ -14,13 +14,15 @@ command:
 * Python 3.5+
 * httplib2
 * six
-* pandas (for parsing CSV and other data processing)
+* pandas
 * sqlalchemy
+
+You can also find all dependency packages in `requirements.txt` file.
 
 ## Making Requests
 
-You need to specify `username` and `password` credentials of your WebObs access
-login in order to make a request. For example:
+You need to specify `username` and `password` credentials of your WebObs login
+access in order to make a request. For example:
 
 ```python
 import webobsclient
@@ -44,7 +46,7 @@ import webobsclient
 
 client = webobsclient.MC3Client(username='USER', password='PASSWORD')
 response, content = client.request(
-    starttime='2019-06-15', endtime='2019-07-15', slt=0, type='ALL',
+    starttime='2019-06-15 12:00:00', endtime='2019-07-15 12:00:00', slt=0, type='ALL',
     duree='ALL', ampoper='eq', amplitude='ALL', locstatus=0, located=0,
     hideloc=0, mc='MC3', dump='bul', graph='movsum')
 
@@ -68,19 +70,20 @@ print(content)
 ```
 
 Note that date time in the request and WebObs are both in UTC time zone. If
-you use local time zone, you should convert it to UTC time zone before making
-the request.
+you're using local time zone, you should convert it to UTC time zone before
+making the request.
 
 ## Parsing MC3 CSV Bulletin
 
-`webobsclient` provides some utility classes to enable MC3 CSV parsing from
+`webobsclient` provides some utility classes to enable parsing MC3 CSV 
+from
 WebObs response:
 
 ```python
-from webobsclient import MC3Client
+import webobsclient
 from webobsclient.parser import MC3Parser
 
-client = MC3Client(username='USER', password='PASSWORD')
+client = webobsclient.MC3Client(username='USER', password='PASSWORD')
 
 response, content = client.request(
     type='VTA', starttime='2019-10-01', endtime='2019-10-31', slt=0,
@@ -93,16 +96,29 @@ print(parser.to_dictionary())
 
 The above example request `VTA` earthquake event to the WebObs MC3 bulletin from
 `2019-10-01` to `2019-10-31`. We create a parser instance with
-`use_local_tz=True` option. This will convert any date time types from UTC
-(WebObs use UTC time zone) to Asia/Jakarta time zone because MC3Parser class
-uses Asia/Jakarta time zone by default. Method `to_dictionary()` will convert
-MC3 CSV to Python dictionary.
+`use_local_tz=True` option. This will convert any columns with date time type
+from UTC to Asia/Jakarta time zone because MC3Parser class uses Asia/Jakarta
+time zone by default. Method `to_dictionary()` will convert MC3 CSV to Python
+dictionary.
 
 MC3 CSV is parsed using pre-defined column shemas. You can see the column
 schemas in `webobsclient/schemas.py`.
 
-For more information about available methods, see the source in
+For more information about available methods and options, see the source in
 `webobsclient/parser.py`.
+
+## Changing the WebObs Host
+
+This package primarily used at BPPTKG to interact with our WebObs server.
+Default WebObs host in library is `192.168.0.25`. If your WebObs host is
+different, you can change the WebObs host as follows:
+
+```python
+import webobsclient
+
+client = webobsclient.MC3Client(username='USER', password='PASSWORD')
+client.api.host = '192.168.5.10'
+```
 
 ## Supported WebObs Clients
 
