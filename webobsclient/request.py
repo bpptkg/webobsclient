@@ -10,6 +10,9 @@ def encode_string(value):
 
 
 class BasicRequest(object):
+    """
+    Basic HTTP request class.
+    """
 
     def __init__(self, api):
         self.api = api
@@ -68,6 +71,12 @@ class BasicRequest(object):
 
 
 class RequestMethod(object):
+    """
+    Base request method class.
+
+    Request method defines how a client interact with a server. Some examples
+    include what is the URL base path, available query lookup parameters, etc.
+    """
 
     path = None
     method = 'GET'
@@ -102,6 +111,9 @@ class RequestMethod(object):
 
 
 class MC3RequestMethod(RequestMethod):
+    """
+    Base WebObs MC3 request method.
+    """
 
     path = '/mc3.pl'
     accepts_parameters = (
@@ -160,6 +172,9 @@ class MC3RequestMethod(RequestMethod):
 
 
 class Sefran3RequestMethod(RequestMethod):
+    """
+    Base WebObs Sefran3 request method.
+    """
 
     path = '/sefran3.pl'
     accepts_parameters = (

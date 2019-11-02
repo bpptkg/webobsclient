@@ -1,8 +1,8 @@
 import io
 import pandas as pd
 
-from .schemas import MC3Schema
-from .utils import object_from_list
+from webobsclient.schemas import MC3Schema
+from webobsclient.utils import object_from_list
 
 
 def decode_bytes(data):
@@ -16,7 +16,7 @@ class MC3Parser(object):
     """
     MC3 CSV parser object.
 
-    It parses CSV content from web request or directly for CSV files. It also
+    It parses CSV content from web request or directly from CSV file. It also
     has an option to convert datetime type from native UTC to local time zone,
     i.e. Asia/Jakarta.
     """

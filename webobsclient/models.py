@@ -2,6 +2,9 @@ import six
 
 
 class ApiModel(object):
+    """
+    Base API model class.
+    """
 
     @classmethod
     def object_from_dictionary(cls, entry):
@@ -14,6 +17,9 @@ class ApiModel(object):
 
 
 class DataModel(ApiModel):
+    """
+    Data model class. It takes a list of dictionary and holds them as object.
+    """
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():

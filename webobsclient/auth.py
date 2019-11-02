@@ -1,4 +1,8 @@
 class BasicAuthenticationAPI(object):
+    """
+    Basic HTTP authentication API. It uses username and password to authenticate
+    a request to a server.
+    """
 
     host = None
     username = None

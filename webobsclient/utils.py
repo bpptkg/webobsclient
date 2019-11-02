@@ -1,6 +1,6 @@
 import six
 
-from .models import DataModel
+from webobsclient.models import DataModel
 
 
 def encode_string(value):
