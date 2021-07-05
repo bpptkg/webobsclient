@@ -1,8 +1,9 @@
 import io
+
 import pandas as pd
 
-from webobsclient.schemas import MC3Schema
-from webobsclient.utils import object_from_list
+from .schemas import MC3Schema
+from .utils import object_from_list
 
 
 def decode_bytes(data):
