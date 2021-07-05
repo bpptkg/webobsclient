@@ -101,3 +101,17 @@ def get_seismicity_by_range(engine, table, starttime, endtime, eventtype):
             queryset,
             ['timestamp', 'count'],
         )
+
+
+def check_exists(engine, table, eventids):
+    """
+    Generator function to check if particular event ID exists in the database.
+    If exists, yield True. Otherwise, yield False.
+    """
+    with session_scope(engine) as session:
+        for eventid in eventids:
+            event = session.query(table).get(eventid)
+            if event is not None:
+                yield True
+            else:
+                yield False
