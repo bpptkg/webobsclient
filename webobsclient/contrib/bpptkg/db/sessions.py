@@ -1,6 +1,6 @@
-from sqlalchemy.orm import scoped_session
-from sqlalchemy.orm import sessionmaker
 from contextlib import contextmanager
+
+from sqlalchemy.orm import scoped_session, sessionmaker
 
 
 def load_session(engine):
