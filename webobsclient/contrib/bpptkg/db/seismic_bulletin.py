@@ -1,28 +1,17 @@
-from sqlalchemy import create_engine
-from sqlalchemy import Column
-from sqlalchemy import DateTime
-from sqlalchemy import Integer
-from sqlalchemy import Float
-from sqlalchemy import String
+from sqlalchemy import (JSON, Column, DateTime, Float, Integer, String,
+                        create_engine)
 from sqlalchemy.ext.automap import automap_base
-
-from webobsclient.decorators import run_once
 
 Base = automap_base()
 
 
-@run_once
-def prepare(engine, **kwargs):
-    Base.prepare(engine, **kwargs)
-
-
-def engine(name):
-    engine = create_engine(name)
-    prepare(engine, reflect=True)
-    return engine
-
-
 class Bulletin(Base):
+    """
+    BMA bulletin table.
+
+    Reference:
+    https://bma.cendana15.com/docs/references/schemas/seismic_bulletin.html#bulletin
+    """
     __tablename__ = 'bulletin'
 
     eventid = Column('eventid', String(100), primary_key=True, index=True)
@@ -56,3 +45,6 @@ class Bulletin(Base):
                              index=True, nullable=True)
     location_mode = Column('locmode', String(255), index=True, nullable=True)
     location_type = Column('loctype', String(255), index=True, nullable=True)
+    btbb = Column('btbb', JSON, nullable=True)
+    cluster = Column('cluster', Integer, index=True, nullable=True)
+    corr_coef = Column('corr_coef', Float, index=True, nullable=True)
