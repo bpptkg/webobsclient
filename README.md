@@ -9,16 +9,6 @@ typing this command:
 
     pip install -U webobsclient
 
-## Requirements
-
-* Python 3.5+
-* httplib2
-* six
-* pandas
-* sqlalchemy
-
-You can also find all dependency packages in `requirements.txt` file.
-
 ## Making Requests
 
 You need to specify `username` and `password` credentials of your WebObs login
@@ -38,8 +28,8 @@ print(content)
 ```
 
 Sometimes, using `y1`, `m1`, `d1`, and `h1` options are inconvenient. You can
-use `starttime`, and `endtime` options indicating time range of your request.
-For example:
+use `starttime`, and `endtime` options indicating the time range of your
+request. For example:
 
 ```python
 import webobsclient
@@ -75,8 +65,7 @@ making the request.
 
 ## Parsing MC3 CSV Bulletin
 
-`webobsclient` provides some utility classes to enable parsing MC3 CSV 
-from
+`webobsclient` provides some utility classes to enable parsing MC3 CSV from
 WebObs response:
 
 ```python
@@ -101,8 +90,8 @@ from UTC to Asia/Jakarta time zone because MC3Parser class uses Asia/Jakarta
 time zone by default. Method `to_dictionary()` will convert MC3 CSV to Python
 dictionary.
 
-MC3 CSV is parsed using pre-defined column shemas. You can see the column
-schemas in `webobsclient/schemas.py`.
+MC3 CSV is parsed using pre-defined columns schema. You can see the columns
+schema in `webobsclient/schemas.py`.
 
 For more information about available methods and options, see the source in
 `webobsclient/parser.py`.
