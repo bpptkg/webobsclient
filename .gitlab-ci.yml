@@ -6,11 +6,6 @@ before_script:
   - apt-get install -y python3-pip
   - pip install tox
 
-python34:
-  image: python:3.4
-  stage: test
-  script: tox -e py34
-
 python35:
   image: python:3.5
   stage: test
@@ -25,3 +20,13 @@ python37:
   image: python:3.7
   stage: test
   script: tox -e py37
+
+python38:
+  image: python:3.8
+  stage: test
+  script: tox -e py38
+
+python39:
+  image: python:3.9
+  stage: test
+  script: tox -e py39
