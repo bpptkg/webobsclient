@@ -32,6 +32,10 @@ class MC3Schema(BaseSchema):
             'type': 'float32',
         },
         {
+            'name': 'energy',
+            'type': 'float32',
+        },
+        {
             'name': 'longitude',
             'type': 'float32',
         },
