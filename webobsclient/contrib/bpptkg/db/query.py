@@ -125,3 +125,22 @@ def filter_exists(engine, table, events):
             result = session.query(table).get(event['eventid'])
             if result is not None:
                 yield event
+
+
+def filter_exact(engine, table, events):
+    """
+    Generator function to check if particular event not exists (event ID not
+    exists, or event ID exists but eventtype differ) in the database.
+    """
+    with session_scope(engine) as session:
+        for event in events:
+            obj = session.query(table).get(event['eventid'])
+            result = object_as_dict(obj) if obj is not None else None
+            if (
+                (result is None)
+                or (
+                    result is not None
+                    and result['eventtype'] != event['eventtype']
+                )
+            ):
+                yield event
