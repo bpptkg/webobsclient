@@ -124,7 +124,7 @@ def filter_exists(engine, table, events):
         for event in events:
             result = session.query(table).get(event['eventid'])
             if result is not None:
-                yield event
+                yield (event, result)
 
 
 def filter_exact(engine, table, events):
@@ -143,4 +143,4 @@ def filter_exact(engine, table, events):
                     and result['eventtype'] != event['eventtype']
                 )
             ):
-                yield event
+                yield (event, result)
