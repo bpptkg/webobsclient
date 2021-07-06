@@ -10,6 +10,9 @@ class MC3Schema(BaseSchema):
 
     delimiter = ';'
     comment = '#'
+
+    # Order of this item matters. Each field name is adjusted as the same as
+    # seismic bulletin column model.
     schema = [
         {
             'name': 'eventdate',
@@ -48,19 +51,19 @@ class MC3Schema(BaseSchema):
             'type': 'float32',
         },
         {
-            'name': 'type',
+            'name': 'eventtype',
             'type': 'str',
         },
         {
-            'name': 'file',
+            'name': 'seiscompid',
             'type': 'str',
         },
         {
-            'name': 'locmode',
+            'name': 'location_mode',
             'type': 'str',
         },
         {
-            'name': 'loctype',
+            'name': 'location_type',
             'type': 'str',
         },
         {
