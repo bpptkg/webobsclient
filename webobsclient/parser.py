@@ -34,13 +34,16 @@ class MC3Parser(BaseParser):
                  local_tz='Asia/Jakarta',
                  use_local_tz=False,
                  stringify_datetime=True,
+                 calc_missing_fields=False,
                  schema=None):
         self.csv = csv
         self.utc = utc
         self.local_tz = local_tz
         self.use_local_tz = use_local_tz
         self.stringify_datetime = stringify_datetime
-        if schema:
+        self.calc_missing_fields = calc_missing_fields
+
+        if schema is not None:
             self.schema = schema
         else:
             self.schema = MC3Schema()
@@ -83,6 +86,12 @@ class MC3Parser(BaseParser):
                 df[col] = pd.to_datetime(df[col], utc=self.utc)
                 if self.use_local_tz:
                     df[col] = df[col].dt.tz_convert(self.local_tz)
+
+                if self.calc_missing_fields:
+                    df['{}_microsecond'.format(col)] = df[col].apply(
+                        lambda x: x.microsecond/10000)
+
+                    df['valid'] = 0
 
                 if self.stringify_datetime:
                     df[col] = df[col].apply(lambda item: item.isoformat())
