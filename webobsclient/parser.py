@@ -35,12 +35,16 @@ class MC3Parser(BaseParser):
                  use_local_tz=False,
                  stringify_datetime=True,
                  calc_missing_fields=False,
+                 datetime_isoformat=True,
+                 datetime_format='%Y-%m-%d %H:%M:%S',
                  schema=None):
         self.csv = csv
         self.utc = utc
         self.local_tz = local_tz
         self.use_local_tz = use_local_tz
         self.stringify_datetime = stringify_datetime
+        self.datetime_isoformat = datetime_isoformat
+        self.datetime_format = datetime_format
         self.calc_missing_fields = calc_missing_fields
 
         if schema is not None:
@@ -94,7 +98,10 @@ class MC3Parser(BaseParser):
                     df['valid'] = 0
 
                 if self.stringify_datetime:
-                    df[col] = df[col].apply(lambda item: item.isoformat())
+                    if self.datetime_isoformat:
+                        df[col] = df[col].apply(lambda item: item.isoformat())
+                    else:
+                        df[col] = df[col].dt.strftime(self.datetime_format)
 
         return df
 
