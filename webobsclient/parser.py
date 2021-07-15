@@ -32,8 +32,8 @@ class MC3Parser(BaseParser):
                  utc=True,
                  local_tz='Asia/Jakarta',
                  use_local_tz=False,
-                 stringify_datetime=True,
-                 calc_missing_fields=False,
+                 stringify_datetime=False,
+                 calc_missing_fields=True,
                  datetime_isoformat=True,
                  datetime_format='%Y-%m-%d %H:%M:%S',
                  schema=None):
@@ -100,9 +100,6 @@ class MC3Parser(BaseParser):
                         df[col] = df[col].apply(lambda item: item.isoformat())
                     else:
                         df[col] = df[col].dt.strftime(self.datetime_format)
-
-            else:
-                df[col] = df[col].astype(dtype)
 
         return df
 

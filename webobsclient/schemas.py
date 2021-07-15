@@ -29,11 +29,11 @@ class MC3Schema(BaseSchema):
         },
         {
             'name': 'amplitude',
-            'type': 'float32',
+            'type': 'str',
         },
         {
             'name': 'magnitude',
-            'type': 'float32',
+            'type': 'str',
         },
         {
             'name': 'energy',
