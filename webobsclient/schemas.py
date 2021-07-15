@@ -10,6 +10,7 @@ class MC3Schema(BaseSchema):
 
     delimiter = ';'
     comment = '#'
+    webobs_version = '2.2.0'
 
     # Order of this item matters. Each field name is adjusted as the same as
     # seismic bulletin column model.

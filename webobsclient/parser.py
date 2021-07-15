@@ -29,7 +29,6 @@ class MC3Parser(BaseParser):
     """
 
     def __init__(self,
-                 csv,
                  utc=True,
                  local_tz='Asia/Jakarta',
                  use_local_tz=False,
@@ -38,7 +37,6 @@ class MC3Parser(BaseParser):
                  datetime_isoformat=True,
                  datetime_format='%Y-%m-%d %H:%M:%S',
                  schema=None):
-        self.csv = csv
         self.utc = utc
         self.local_tz = local_tz
         self.use_local_tz = use_local_tz
@@ -52,12 +50,12 @@ class MC3Parser(BaseParser):
         else:
             self.schema = MC3Schema()
 
-    def to_dataframe(self):
+    def to_df(self, csv):
         """
         Convert to Pandas DataFrame.
         """
         try:
-            path_or_buffer = self.csv.decode('utf-8')
+            path_or_buffer = csv.decode('utf-8')
             buffer = io.StringIO(path_or_buffer)
             lines = []
             while True:
@@ -68,7 +66,7 @@ class MC3Parser(BaseParser):
                     lines.append(line)
             data = ''.join(lines)
         except (UnicodeDecodeError, AttributeError):
-            path_or_buffer = self.csv
+            path_or_buffer = csv
             lines = []
             with open(path_or_buffer, 'r') as buffer:
                 while True:
@@ -103,25 +101,48 @@ class MC3Parser(BaseParser):
                     else:
                         df[col] = df[col].dt.strftime(self.datetime_format)
 
+            else:
+                df[col] = df[col].astype(dtype)
+
         return df
 
-    def to_dictionary(self):
+    def to_dataframe(self, csv):
+        """
+        Convert to Pandas DataFrame.
+        """
+        return self.to_df(csv)
+
+    def to_dict(self, csv):
         """
         Convert to Python dictionary.
         """
-        df = self.to_dataframe()
+        df = self.to_df(csv)
         return df.to_dict(orient='records')
 
-    def to_json(self):
+    def to_dictionary(self, csv):
+        """
+        Convert to Python dictionary.
+        """
+        df = self.to_df(csv)
+        return df.to_dict(orient='records')
+
+    def to_json(self, csv):
         """
         Convert to JSON string.
         """
-        df = self.to_dataframe()
+        df = self.to_df(csv)
         return df.to_json(orient='records')
 
-    def to_object(self):
+    def to_obj(self, csv):
         """
         Convert to Python object.
         """
-        data = self.to_dictionary()
+        data = self.to_dict(csv)
+        return object_from_list(data)
+
+    def to_object(self, csv):
+        """
+        Convert to Python object.
+        """
+        data = self.to_dict(csv)
         return object_from_list(data)
