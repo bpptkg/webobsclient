@@ -36,9 +36,9 @@ import webobsclient
 
 client = webobsclient.MC3Client(username='USER', password='PASSWORD')
 response, content = client.request(
-    starttime='2019-06-15 12:00:00', endtime='2019-07-15 12:00:00', slt=0, type='ALL',
-    duree='ALL', ampoper='eq', amplitude='ALL', locstatus=0, located=0,
-    hideloc=0, mc='MC3', dump='bul', graph='movsum')
+    starttime='2019-06-15 12:00:00', endtime='2019-07-15 12:00:00', slt=0,
+    type='ALL', duree='ALL', ampoper='eq', amplitude='ALL', locstatus=0,
+    located=0, hideloc=0, mc='MC3', dump='bul', graph='movsum')
 
 print(response)
 print(content)
@@ -79,15 +79,15 @@ response, content = client.request(
     duree='ALL', ampoper='eq', amplitude='ALL', locstatus=0, located=0,
     hideloc=0, mc='MC3', dump='bul', graph='movsum')
 
-parser = MC3Parser(content, use_local_tz=True)
-print(parser.to_dictionary())
+parser = MC3Parser(as_local_tz=True)
+print(parser.to_dict(content))
 ```
 
 The above example request `VTA` earthquake event to the WebObs MC3 bulletin from
 `2019-10-01` to `2019-10-31`. We create a parser instance with
-`use_local_tz=True` option. This will convert any columns with date time type
+`as_local_tz=True` option. This will convert any columns with date time type
 from UTC to Asia/Jakarta time zone because MC3Parser class uses Asia/Jakarta
-time zone by default. Method `to_dictionary()` will convert MC3 CSV to Python
+time zone by default. Method `to_dict()` will convert MC3 CSV to Python
 dictionary.
 
 MC3 CSV is parsed using pre-defined columns schema. You can see the columns
@@ -106,7 +106,7 @@ different, you can change the WebObs host as follows:
 import webobsclient
 
 client = webobsclient.MC3Client(username='USER', password='PASSWORD')
-client.api.host = '192.168.5.10'
+client.api.host = '192.168.5.10:8080'
 ```
 
 ## Supported WebObs Clients
