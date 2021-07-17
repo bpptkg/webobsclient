@@ -31,17 +31,15 @@ class MC3Parser(BaseParser):
     def __init__(self,
                  utc=True,
                  local_tz='Asia/Jakarta',
-                 use_local_tz=False,
+                 as_local_tz=False,
                  stringify_datetime=False,
                  calc_missing_fields=True,
-                 datetime_isoformat=True,
-                 datetime_format='%Y-%m-%d %H:%M:%S',
+                 datetime_format='iso-8601',
                  schema=None):
         self.utc = utc
         self.local_tz = local_tz
-        self.use_local_tz = use_local_tz
+        self.as_local_tz = as_local_tz
         self.stringify_datetime = stringify_datetime
-        self.datetime_isoformat = datetime_isoformat
         self.datetime_format = datetime_format
         self.calc_missing_fields = calc_missing_fields
 
@@ -86,7 +84,7 @@ class MC3Parser(BaseParser):
         for col, dtype in self.schema.get_dtypes().items():
             if dtype.startswith('datetime'):
                 df[col] = pd.to_datetime(df[col], utc=self.utc)
-                if self.use_local_tz:
+                if self.as_local_tz:
                     df[col] = df[col].dt.tz_convert(self.local_tz)
 
                 if self.calc_missing_fields:
@@ -96,7 +94,8 @@ class MC3Parser(BaseParser):
                     df['valid'] = 0
 
                 if self.stringify_datetime:
-                    if self.datetime_isoformat:
+                    if (self.datetime_format == 'iso-8601'
+                            or self.datetime_format == 'iso'):
                         df[col] = df[col].apply(lambda item: item.isoformat())
                     else:
                         df[col] = df[col].dt.strftime(self.datetime_format)

@@ -13,7 +13,10 @@ class MC3Schema(BaseSchema):
     webobs_version = '2.2.0'
 
     # Order of this item matters. Each field name is adjusted as the same as
-    # seismic bulletin column model.
+    # seismic bulletin column model. Type field in the schema below is not
+    # strict. The parser converts datetime column only as other column may
+    # contains multiple dtype, e.g. int32 and None. So, it is the best to leave
+    # the job to Pandas parser and convert the dtype later.
     schema = [
         {
             'name': 'eventdate',
