@@ -1,5 +1,4 @@
-from sqlalchemy import (JSON, Column, DateTime, Float, Integer, String,
-                        create_engine)
+from sqlalchemy import JSON, Column, DateTime, Float, Integer, String
 from sqlalchemy.ext.automap import automap_base
 
 Base = automap_base()
@@ -7,7 +6,7 @@ Base = automap_base()
 
 class Bulletin(Base):
     """
-    BMA bulletin table.
+    BMA seismic bulletin table.
 
     Reference:
     https://bma.cendana15.com/docs/references/schemas/seismic_bulletin.html#bulletin
