@@ -15,4 +15,8 @@ class BasicAuthenticationAPI(object):
         self.username = username
         self.password = password
 
-    
+    def __str__(self):
+        return '<{}>(username={}, password=***)'.format(
+            self.__class__.__name__,
+            self.username,
+        )
