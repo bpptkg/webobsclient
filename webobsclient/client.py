@@ -1,6 +1,5 @@
 from webobsclient.auth import BasicAuthenticationAPI
-from webobsclient.request import (BasicRequest, MC3RequestMethod,
-                                  Sefran3RequestMethod)
+from webobsclient.request import MC3RequestMethod, Sefran3RequestMethod
 
 __all__ = [
     'MC3Client',
