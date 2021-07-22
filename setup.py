@@ -38,7 +38,7 @@ setup(
         'Environment :: Console',
         'Operating System :: POSIX :: Linux',
         'Intended Audience :: Science/Research',
-        'Natural Language :: Indonesian',
+        'Natural Language :: English',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
