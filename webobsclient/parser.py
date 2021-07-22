@@ -36,6 +36,42 @@ class MC3Parser(BaseParser):
                  calc_missing_fields=True,
                  datetime_format='iso-8601',
                  schema=None):
+        """
+        :param utc: True if WebObs MC3 bulletin datetime fields use UTC time
+        zone.
+
+        :type utc: bool
+
+        :param local_tz: Local time zone name. Default to Asia/Jakarta.
+
+        :type local_tz: str
+
+        :param as_local_tz: True if you want to convert datetime fields in the
+        parsed csv to local time zone.
+
+        :type as_local_tz: bool
+
+        :param stringify_datetime: Convert datetime fields to string if True.
+        Otherwise, use native Pandas Timestamp. Default to True.
+
+        :type stringify_datetime: bool
+
+        :param calc_missing_fields: If true, the parser will calculate necessary
+        fields to match Bulletin model columns/fields. Default to True.
+
+        :type calc_missing_fields: bool
+
+        :param datetime_format: When stringify_datetime is True, convert
+        datetime fields to this format. Default to iso-8601.
+
+        :type datetime_format: str
+
+        :param schema: Uses custom schema class instead of default provided. It
+        is useful if WebObs MC3 format changed and the library haven't updated
+        the schema yet.
+
+        :type schema: :class:`webobsclient.schemas.MC3Schema`
+        """
         self.utc = utc
         self.local_tz = local_tz
         self.as_local_tz = as_local_tz
