@@ -88,7 +88,7 @@ The above example request `VTA` earthquake event to the WebObs MC3 bulletin from
 `as_local_tz=True` option. This will convert any columns with date time type
 from UTC to Asia/Jakarta time zone because MC3Parser class uses Asia/Jakarta
 time zone by default. Method `to_dict()` will convert MC3 CSV to Python
-dictionary.
+dictionary. Parser class uses Pandas DataFrame as underlying data layer.
 
 MC3 CSV is parsed using pre-defined columns schema. You can see the columns
 schema in `webobsclient/schemas.py`.
