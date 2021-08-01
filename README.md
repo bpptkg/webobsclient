@@ -114,14 +114,9 @@ client.api.host = '192.168.5.10:8080'
 Currently only WebObs MC3 and Sefran3 is supported. More client will be added in
 the future version.
 
-## Support
-
-This project is maintained by Indra Rudianto. If you have any question about
-this project, you can contact him at <indrarudianto.official@gmail.com>.
-
 ## License
 
 By contributing to the project, you agree that your contributions will be
 licensed under its MIT license. See
-[LICENSE](https://gitlab.com/bpptkg/webobsclient/blob/master/LICENSE) for
+[LICENSE](https://github.com/bpptkg/webobsclient/blob/master/LICENSE) for
 details.
