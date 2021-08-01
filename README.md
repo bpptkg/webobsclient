@@ -1,5 +1,7 @@
 # webobsclient
 
+![GitHub Badge](https://github.com/bpptkg/webobsclient/workflows/Build/badge.svg)
+
 WebObs Python client.
 
 ## Installation
