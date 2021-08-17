@@ -28,9 +28,9 @@ setup(
         'pandas',
         'sqlalchemy',
     ],
-    author='Indra Rudianto',
-    author_email='indrarudianto.official@gmail.com',
-    url='https://gitlab.com/bpptkg/webobsclient',
+    author='BPPTKG',
+    author_email='bpptkg@esdm.go.id',
+    url='https://github.com/bpptkg/webobsclient',
     zip_safe=False,
     packages=find_packages(exclude=['docs', 'tests']),
     classifiers=[
